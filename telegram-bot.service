@@ -1,0 +1,16 @@
+[Unit]
+Description=Telegram DevOps Bot
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=deploy
+WorkingDirectory=/opt/app/deploy
+EnvironmentFile=/opt/app/deploy/.env
+ExecStart=/usr/bin/python3 /opt/app/deploy/bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
